@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [eyzenhart](https://up.htmlacademy.ru/react/6/user/1395441).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Кузнецов](https://htmlacademy.ru/profile/knenkne).
 
 ---
 
