@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 
 const Film = ({promoTitle, promoGenre, promoYear}) => {
@@ -40,12 +41,12 @@ const Film = ({promoTitle, promoGenre, promoYear}) => {
               <span className="movie-card__year">{promoYear}</span>
             </p>
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link to="/player/123" className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <button className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>

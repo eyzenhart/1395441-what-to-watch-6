@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import filmsData from './mocks/films';
 
-const data = [`1`, `2`, `3`, `4`];
 const promoData = [
   {promoTitle: `The Grand Budapest Hotel`, promoGenre: `Drama`, promoYear: `2014`}
 ];
@@ -10,8 +10,8 @@ const promoData = [
 
 ReactDOM.render(
     <App
-      titles = {data}
       promo = {promoData}
+      films = {filmsData}
     />,
     document.querySelector(`#root`)
 );
