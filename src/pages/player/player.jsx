@@ -1,11 +1,17 @@
 import React from 'react';
+import {Link, useParams} from 'react-router-dom';
+import propTypes from 'prop-types';
 
-const Player = () => {
+const Player = ({films}) => {
+
+  const {id} = useParams();
+  const film = films.find((film) => film.id === id);
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={film.video} className="player__video" poster="img/player-poster.jpg"></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <Link type="button" className="player__exit" to = "/">Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -23,7 +29,7 @@ const Player = () => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{film.title}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -35,6 +41,18 @@ const Player = () => {
       </div>
     </div>
   );
+};
+
+Player.propTypes = {
+  films: propTypes.arrayOf(
+      propTypes.shape({
+        id: propTypes.string,
+        title: propTypes.string,
+        src: propTypes.string,
+        alt: propTypes.string,
+        video: propTypes.string
+      })
+  )
 };
 
 export default Player;

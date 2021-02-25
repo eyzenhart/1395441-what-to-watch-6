@@ -1,10 +1,10 @@
 import React from 'react';
-import Card from '../card/card';
 import Film from '../film/film';
 import propTypes from 'prop-types';
+import FilmList from '../film-list/film-list';
 
 
-const MainPage = ({titles, promo}) => {
+const MainPage = ({films, promo}) => {
 
   return (<React.Fragment>
 
@@ -47,9 +47,9 @@ const MainPage = ({titles, promo}) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {titles.map((title, i) => <Card key = {title + i} title = {title}/>)}
-        </div>
+
+        <FilmList films = {films}/>
+
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -74,7 +74,15 @@ const MainPage = ({titles, promo}) => {
 };
 
 MainPage.propTypes = {
-  titles: propTypes.arrayOf(propTypes.string),
+  films: propTypes.arrayOf(
+      propTypes.shape({
+        id: propTypes.string,
+        title: propTypes.string,
+        src: propTypes.string,
+        alt: propTypes.string,
+        video: propTypes.string
+      })
+  ),
   promo: propTypes.arrayOf(
       propTypes.shape({
         promoTitle: propTypes.string,
