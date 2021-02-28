@@ -2,6 +2,7 @@ import React from 'react';
 import Film from '../film/film';
 import propTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
+import movieInfoProps from '../../props/movie-info.props';
 
 
 const MainPage = ({films, promo}) => {
@@ -74,15 +75,7 @@ const MainPage = ({films, promo}) => {
 };
 
 MainPage.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  ),
+  films: movieInfoProps,
   promo: propTypes.arrayOf(
       propTypes.shape({
         promoTitle: propTypes.string,

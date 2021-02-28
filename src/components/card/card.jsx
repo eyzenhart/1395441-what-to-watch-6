@@ -1,6 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import PreviewPlayer from '../preview-player/preview-player';
+import movieInfoProps from '../../props/movie-info.props';
 
 const Card = (props) => {
 
@@ -10,7 +12,8 @@ const Card = (props) => {
 
     <article onMouseOver = {() => onMouseOver(films.id)} className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
-        <img src={films.src} alt={films.alt} width="280" height="175" />
+        {/* <img src={films.src} alt={films.alt} width="280" height="175" /> */}
+        <PreviewPlayer defaultIsPlaying = {false} src = {films.video}/>
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to="/films/:id?">
@@ -22,15 +25,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  ),
+  films: movieInfoProps,
   onMouseOver: propTypes.func
 };
 
