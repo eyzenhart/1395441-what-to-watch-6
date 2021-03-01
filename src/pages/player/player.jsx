@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom';
-import propTypes from 'prop-types';
 import movieInfoProps from '../../props/movie-info.props';
 
 const Player = ({films}) => {
@@ -10,7 +9,7 @@ const Player = ({films}) => {
 
   return (
     <div className="player">
-      <video src={film.video} className="player__video" poster="#"></video>
+      <video autoPlay className="player__video" poster="#"> <source type="video/mp4" src={film.video}/> </video>
 
       <Link type="button" className="player__exit" to = "/">Exit</Link>
 
