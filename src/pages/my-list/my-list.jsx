@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
-import propTypes from 'prop-types';
+import movieInfoProps from '../../props/movie-info.props';
 
 const MyList = ({films}) => {
 
@@ -8,11 +9,11 @@ const MyList = ({films}) => {
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to="/" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list</h1>
@@ -49,15 +50,7 @@ const MyList = ({films}) => {
 };
 
 MyList.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  )
+  films: movieInfoProps
 };
 
 export default MyList;

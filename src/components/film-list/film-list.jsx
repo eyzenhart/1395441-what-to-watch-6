@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Card from '../card/card';
-import propTypes from 'prop-types';
+import movieInfoProps from '../../props/movie-info.props';
 
 const FilmList = ({films}) => {
 
@@ -18,15 +18,7 @@ const FilmList = ({films}) => {
 };
 
 FilmList.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  )
+  films: movieInfoProps
 };
 
 export default FilmList;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom';
-import propTypes from 'prop-types';
+import movieInfoProps from '../../props/movie-info.props';
 
 const Player = ({films}) => {
 
@@ -9,7 +9,7 @@ const Player = ({films}) => {
 
   return (
     <div className="player">
-      <video src={film.video} className="player__video" poster="img/player-poster.jpg"></video>
+      <video autoPlay className="player__video" poster="#"> <source type="video/mp4" src={film.video}/> </video>
 
       <Link type="button" className="player__exit" to = "/">Exit</Link>
 
@@ -44,15 +44,7 @@ const Player = ({films}) => {
 };
 
 Player.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  )
+  films: movieInfoProps
 };
 
 export default Player;

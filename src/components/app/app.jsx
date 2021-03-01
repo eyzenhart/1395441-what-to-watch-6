@@ -9,6 +9,7 @@ import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
+import movieInfoProps from '../../props/movie-info.props';
 
 const App = (props) => {
 
@@ -37,15 +38,7 @@ const App = (props) => {
 
 
 App.propTypes = {
-  films: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.string,
-        title: propTypes.string,
-        src: propTypes.string,
-        alt: propTypes.string,
-        video: propTypes.string
-      })
-  ),
+  films: movieInfoProps,
   promo: propTypes.arrayOf(
       propTypes.shape({
         promoTitle: propTypes.string,
