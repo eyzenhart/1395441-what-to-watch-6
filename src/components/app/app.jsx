@@ -4,7 +4,6 @@ import propTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
-// import Film from '../film/film';
 import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
