@@ -1,4 +1,4 @@
-import React, {useState, createRef, useEffect} from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 
 const PreviewPlayer = ({src}) => {
