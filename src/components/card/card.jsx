@@ -2,7 +2,7 @@ import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import PreviewPlayer from '../preview-player/preview-player';
 import movieInfoProps from '../../props/movie-info.props';
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 
 const Card = (props) => {
 
