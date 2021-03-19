@@ -9,6 +9,7 @@ import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
 import movieInfoProps from '../../props/movie-info.props';
+import { PrivateRoute } from '../private-route/private-route';
 
 const App = (props) => {
 
@@ -22,9 +23,8 @@ const App = (props) => {
           <Player {...props}/>
         </Route>
         <Route path = '/login' exact component = {SignIn}/>
-        <Route path = '/mylist' exact>
-          <MyList {...props}/>
-        </Route>
+        <PrivateRoute path = '/mylist' exact render = {() => <MyList {...props}/>}>
+        </PrivateRoute>
         <Route path = '/films/:id?' exact>
           <MoviePage {...props}/>
         </Route>

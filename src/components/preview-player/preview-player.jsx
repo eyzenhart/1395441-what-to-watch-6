@@ -1,10 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const PreviewPlayer = ({src}) => {
+const PreviewPlayer = ({src, image}) => {
 
   return (
-    <video autoPlay className="player__video" poster="img/player-poster.jpg" muted> <source src={src}/> </video>
+    <video autoPlay className="player__video" poster={image} muted> <source src={src}/> </video>
   );
 };
 

@@ -9,10 +9,13 @@ const GenreList = (props) => {
 
   const {onUserChoice, genreList} = props;
 
+  console.log(genreList)
+
+
   return (
     <ul className="catalog__genres-list">
 
-      {genreList.payload.map((genre) => <GenreButton key = {genre} genre = {genre} onClick = {onUserChoice}/>)}
+      {/* {genreList.payload.map((genre) => <GenreButton key = {genre} genre = {genre} onClick = {onUserChoice}/>)} */}
 
     </ul>
   );
@@ -27,7 +30,8 @@ GenreList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genreList: state.genreList
+  genreList: state.genreList,
+  films: state.films
 });
 
 const mapDispatchToProps = (dispatch) => ({
