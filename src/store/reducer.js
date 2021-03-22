@@ -29,12 +29,6 @@ const reducer = (state = initialState, action) => {
         currentFilms: action.payload === `All genres` ? state.films : state.films.filter(film => film.genre === action.payload)
       };
 
-    case ActionType.CREATE_GENRE_LIST:
-      return {
-        ...state,
-        genreList: action.payload
-      };
-
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
         ...state,

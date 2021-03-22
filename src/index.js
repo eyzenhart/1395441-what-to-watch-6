@@ -10,7 +10,8 @@ import thunk from 'redux-thunk';
 import {createAPI} from './api'
 import {ActionCreator} from './store/actions';
 import {authCheck} from './api-actions';
-import {AUTH_STATUS} from './api-actions'
+import {AUTH_STATUS} from './api-actions';
+import {redirect} from './store/redirect'
 
 const promoData = [
   {promoTitle: `The Grand Budapest Hotel`, promoGenre: `Drama`, promoYear: `2014`}
@@ -24,7 +25,8 @@ const api = createAPI(
 const store = createStore(
     reducer,
     composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(api))
+      applyMiddleware(thunk.withExtraArgument(api)),
+      applyMiddleware(redirect)
     )
 );
 

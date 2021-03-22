@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {login} from '../../api-actions'
 
 
-const SignIn = ({onSubmit}) => {
+const SignIn = ({onSubmit, onLogIn}) => {
 
 
   const loginRef = useRef();
@@ -46,7 +46,7 @@ const SignIn = ({onSubmit}) => {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">Sign in</button>
+            <button onClick = {() => {onLogIn()}}  className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>
