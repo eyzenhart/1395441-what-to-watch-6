@@ -1,19 +1,21 @@
 import React from 'react';
 import MainPage from '../main-page/main-page';
 import propTypes from 'prop-types';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import SignIn from '../sign-in/sign-in';
+import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
+import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
 import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
 import movieInfoProps from '../../props/movie-info.props';
+import {PrivateRoute} from '../private-route/private-route';
+import browserHistory from '../../browser-history';
 
 const App = (props) => {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route path = '/' exact>
           <MainPage {...props}/>
@@ -21,10 +23,10 @@ const App = (props) => {
         <Route path = '/player/:id?' exact>
           <Player {...props}/>
         </Route>
-        <Route path = '/login' exact component = {SignIn}/>
-        <Route path = '/mylist' exact>
-          <MyList {...props}/>
+        <Route path = '/login' exact render = {({history}) => (<SignIn onLogIn = {() => history.push(`/`)}/>) }>
         </Route>
+        <PrivateRoute path = '/mylist' exact render = {() => <MyList {...props}/>}>
+        </PrivateRoute>
         <Route path = '/films/:id?' exact>
           <MoviePage {...props}/>
         </Route>
