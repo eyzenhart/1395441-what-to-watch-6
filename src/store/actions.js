@@ -7,12 +7,10 @@ export const ActionType = {
 
 export const ActionCreator = {
 
-  loadFilms: (films) => {
-    return {
+  loadFilms: (films) => ({
       type: ActionType.LOAD_FILMS,
       payload: films
-    }
-  },
+  }),
 
   requiredAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
@@ -23,22 +21,4 @@ export const ActionCreator = {
     type: ActionType.GENRE_CHANGE,
     payload: activeGenre
   }),
-
-  createGenreList: (films) => {
-
-    const filmsGenre = films.map(function(film) {
-      return film.genre;
-    });
-
-    filmsGenre.unshift(`All genres`);
-
-    const uniqueGenre = Array.from(new Set(filmsGenre));
-
-    return {
-      type: ActionType.CREATE_GENRE_LIST,
-      payload: uniqueGenre
-    };
-
-  }
-
 };

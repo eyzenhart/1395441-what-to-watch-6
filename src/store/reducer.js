@@ -1,12 +1,10 @@
 import {ActionCreator, ActionType} from './actions';
-// import films from '../mocks/films';
 import {AUTH_STATUS} from '../api-actions'
 
 const initialState = {
   activeGenre: `All genres`,
   films: [],
   currentFilms: [],
-  // genreList: ActionCreator.createGenreList(films),
   genreList: [],
   isFilmListLoaded: false,
   authorizationStatus: AUTH_STATUS.NO_AUTH
@@ -19,6 +17,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         films: action.payload,
+        genreList: Array.from(new Set(action.payload.map((film) => film.genre))),
         currentFilms: action.payload,
         isFilmListLoaded: true
       };

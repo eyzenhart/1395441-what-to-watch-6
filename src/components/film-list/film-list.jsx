@@ -9,12 +9,11 @@ import { ActionCreator } from '../../store/actions';
 
 const FilmList = (props) => {
 
-  const {films, isFilmListLoaded, onLoadFilmList, onLoadGenreList} = props;
+  const {films, isFilmListLoaded, onLoadFilmList} = props;
 
   useEffect(() => {
     if (!isFilmListLoaded) {
       onLoadFilmList();
-      // onLoadGenreList()
     }
   }, [isFilmListLoaded]);
 
@@ -42,9 +41,9 @@ const FilmList = (props) => {
 };
 
 
-// FilmList.propTypes = {
-//   films: movieInfoProps
-// };
+FilmList.propTypes = {
+  films: movieInfoProps
+};
 
 const mapStateToProps = (state) => ({
   films: state.currentFilms,
@@ -55,11 +54,6 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadFilmList() {
     dispatch(fetchFilmsList())
   },
-
-  onLoadGenreList(films) {
-    dispatch(ActionCreator.createGenreList(films))
-  }
-
 })
 
 export {FilmList};
