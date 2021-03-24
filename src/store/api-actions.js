@@ -1,4 +1,4 @@
-import {loadFilms, requiredAuthorization, redirectToRoute} from './store/actions';
+import {loadFilms, requiredAuthorization, redirectToRoute} from './actions';
 
 export const AUTH_STATUS = {
   AUTH: 'AUTH',

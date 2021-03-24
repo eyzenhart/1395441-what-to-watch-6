@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AUTH_STATUS} from '../../api-actions';
+import {AUTH_STATUS} from '../../store/api-actions';
 
 
 const PageHeader = (props) => {

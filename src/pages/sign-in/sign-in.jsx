@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {login} from '../../api-actions'
+import {login} from '../../store/api-actions'
 import Footer from '../../components/footer/footer';
 import { PageHeader } from '../../components/header/header';
 

@@ -5,11 +5,11 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import {createAPI} from './api'
-import {authCheck} from './api-actions';
-import {AUTH_STATUS} from './api-actions';
+import {createAPI} from './store/api'
+import {authCheck} from './store/api-actions';
+import {AUTH_STATUS} from './store/api-actions';
 import {redirect} from './store/redirect';
-import rootReducer from './store/root-reducer';
+import {rootReducer} from './store/root-reducer';
 import {requiredAuthorization} from './store/actions'
 
 const promoData = [

@@ -1,5 +1,5 @@
 import {ActionType} from '../actions';
-import {AUTH_STATUS} from '../../api-actions';
+import {AUTH_STATUS} from '../api-actions';
 
 const initialState = {
   authorizationStatus: AUTH_STATUS.NO_AUTH

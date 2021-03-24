@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { PageHeader } from '../header/header';
-import {AUTH_STATUS} from '../../api-actions';
+import {AUTH_STATUS} from '../../store/api-actions';
 
 
 const Film = ({promoTitle, promoGenre, promoYear}) => {
