@@ -1,7 +1,9 @@
 import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {login} from '../../api-actions'
+import {login} from '../../store/api-actions'
+import Footer from '../../components/footer/footer';
+import { PageHeader } from '../../components/header/header';
 
 
 const SignIn = ({onSubmit, onLogIn}) => {
@@ -21,17 +23,7 @@ const SignIn = ({onSubmit, onLogIn}) => {
 
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to = '/' className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      <PageHeader/>
 
       <div className="sign-in user-page__content">
         <form onSubmit={handleSubmit} action="#" className="sign-in__form">
@@ -51,19 +43,7 @@ const SignIn = ({onSubmit, onLogIn}) => {
         </form>
       </div>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };

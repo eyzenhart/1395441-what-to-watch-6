@@ -10,7 +10,7 @@ import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
 import movieInfoProps from '../../props/movie-info.props';
 import {PrivateRoute} from '../private-route/private-route';
-import browserHistory from '../../browser-history';
+import browserHistory from '../../store/browser-history';
 
 const App = (props) => {
 

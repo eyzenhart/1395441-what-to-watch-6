@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { PageHeader } from '../header/header';
-import {AUTH_STATUS} from '../../api-actions';
+import {AUTH_STATUS} from '../../store/api-actions';
 
 
 const Film = ({promoTitle, promoGenre, promoYear}) => {
@@ -16,22 +16,6 @@ const Film = ({promoTitle, promoGenre, promoYear}) => {
       <h1 className="visually-hidden">WTW</h1>
 
       <PageHeader/>
-
-      {/* <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
-      </header> */}
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">

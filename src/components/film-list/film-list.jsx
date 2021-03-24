@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import Card from '../card/card';
 import {connect} from 'react-redux';
 import movieInfoProps from '../../props/movie-info.props';
-import {fetchFilmsList} from '../../api-actions'
+import {fetchFilmsList} from '../../store/api-actions'
 import LoadingScreen from '../loading-screen/loading-screen'
-import { ActionCreator } from '../../store/actions';
+import {getCurrentFilms, getLoadedFilmListStatus} from '../../store/app-data/selectors';
 
 
 const FilmList = (props) => {
@@ -46,8 +46,8 @@ FilmList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  films: state.currentFilms,
-  isFilmListLoaded: state.isFilmListLoaded
+  films: getCurrentFilms(state),
+  isFilmListLoaded: getLoadedFilmListStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

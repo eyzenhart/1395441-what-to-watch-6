@@ -1,5 +1,4 @@
-import {ActionCreator, ActionType} from './actions';
-import {AUTH_STATUS} from '../api-actions'
+import {ActionType} from '../actions';
 
 const initialState = {
   activeGenre: `All genres`,
@@ -7,12 +6,10 @@ const initialState = {
   currentFilms: [],
   genreList: [],
   isFilmListLoaded: false,
-  authorizationStatus: AUTH_STATUS.NO_AUTH
-};
+}
 
-const reducer = (state = initialState, action) => {
+const appData = (state = initialState, action) => {
   switch (action.type) {
-
     case ActionType.LOAD_FILMS:
       return {
         ...state,
@@ -28,15 +25,9 @@ const reducer = (state = initialState, action) => {
         activeGenre: action.payload,
         currentFilms: action.payload === `All genres` ? state.films : state.films.filter(film => film.genre === action.payload)
       };
+  }
 
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return {
-        ...state,
-        authorizationStatus: action.payload
-      };
-  };
-
-  return state;
+  return state
 };
 
-export {reducer};
+export {appData};
