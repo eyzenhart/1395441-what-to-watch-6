@@ -1,4 +1,4 @@
-import {ActionCreator} from './store/actions';
+import {loadFilms, requiredAuthorization, redirectToRoute} from './store/actions';
 
 export const AUTH_STATUS = {
   AUTH: 'AUTH',
@@ -7,17 +7,17 @@ export const AUTH_STATUS = {
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-  .then(({data}) => dispatch(ActionCreator.loadFilms(data)))
+  .then(({data}) => dispatch(loadFilms(data)))
 );
 
 export const authCheck = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-  .then(() => dispatch(ActionCreator.requiredAuthorization(AUTH_STATUS.AUTH)))
+  .then(() => dispatch(requiredAuthorization(AUTH_STATUS.AUTH)))
   .catch(() => {})
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
-  .then(() => dispatch(ActionCreator.requiredAuthorization(AUTH_STATUS.AUTH)))
-  .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+  .then(() => dispatch(requiredAuthorization(AUTH_STATUS.AUTH)))
+  .then(() => dispatch(redirectToRoute(`/`)))
 );

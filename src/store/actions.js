@@ -1,30 +1,26 @@
 export const ActionType = {
-  GENRE_CHANGE: `genre-change`,
-  CREATE_GENRE_LIST: `create-genre-list`,
-  LOAD_FILMS: 'load-films',
-  REQUIRED_AUTHORIZATION: 'required-authorization',
-  REDIRECCT_TO_ROUTE: 'redirect-to-route',
+  GENRE_CHANGE: `app/genre-change`,
+  LOAD_FILMS: 'data/load-films',
+  REQUIRED_AUTHORIZATION: 'user/required-authorization',
+  REDIRECT_TO_ROUTE: 'app/redirect-to-route',
 };
 
-export const ActionCreator = {
-
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECCT_TO_ROUTE,
+  export const redirectToRoute = (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
     payload: url
-  }),
+  });
 
-  loadFilms: (films) => ({
+  export const loadFilms = (films) => ({
       type: ActionType.LOAD_FILMS,
       payload: films
-  }),
+  });
 
-  requiredAuthorization: (status) => ({
+  export const requiredAuthorization = (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status
-  }),
+  });
 
-  changeGenre: (activeGenre) => ({
+  export const changeGenre = (activeGenre) => ({
     type: ActionType.GENRE_CHANGE,
     payload: activeGenre
-  }),
-};
+  });

@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/actions';
+import {changeGenre} from '../../store/actions';
 import GenreButton from '../genre-button/genre-button';
 import propTypes, {arrayOf} from 'prop-types';
+import {getFilms, getGenres} from '../../store/app-data/selectors';
 
 
 const GenreList = (props) => {
@@ -26,16 +27,16 @@ GenreList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genreList: state.genreList,
-  films: state.films
+  genreList: getGenres(state),
+  films: getFilms(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onUserChoice(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(changeGenre(genre));
   }
 });
 
 export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(GenreList));
 

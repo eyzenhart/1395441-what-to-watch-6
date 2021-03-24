@@ -46,4 +46,4 @@ Card.propTypes = {
   onMouseOver: propTypes.func
 };
 
-export default Card;
+export default React.memo(Card);

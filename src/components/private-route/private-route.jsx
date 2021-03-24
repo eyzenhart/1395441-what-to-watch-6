@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect, Route} from 'react-router';
 import {AUTH_STATUS} from '../../api-actions';
 import {connect} from 'react-redux';
+import {getAuthStatus} from '../../store/user/selectors';
 
 
 const PrivateRoute = (props) => {
@@ -23,7 +24,7 @@ const PrivateRoute = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: getAuthStatus(state)
 });
 
 export {PrivateRoute};
