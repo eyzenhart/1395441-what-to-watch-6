@@ -6,6 +6,8 @@ const initialState = {
   currentFilms: [],
   genreList: [],
   isFilmListLoaded: false,
+  activeTab: 'Overview',
+  activeCard: ' '
 }
 
 const appData = (state = initialState, action) => {
@@ -25,6 +27,18 @@ const appData = (state = initialState, action) => {
         activeGenre: action.payload,
         currentFilms: action.payload === `All genres` ? state.films : state.films.filter(film => film.genre === action.payload)
       };
+
+    case ActionType.TAB_CHANGE:
+      return {
+        ...state,
+        activeTab: action.payload
+      };
+
+    case ActionType.GET_CARD_ID:
+      return {
+        ...state,
+        activeCard: action.payload
+      }
   }
 
   return state

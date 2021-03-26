@@ -7,7 +7,6 @@ import {AUTH_STATUS} from '../../store/api-actions';
 const PageHeader = (props) => {
 
   const {authorizationStatus} = props;
-  console.log(authorizationStatus)
 
   return (
     <header className="page-header movie-card__head">

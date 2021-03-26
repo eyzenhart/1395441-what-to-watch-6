@@ -1,16 +1,30 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {Link, useParams} from 'react-router-dom';
+import { NameSpace } from '../../store/root-reducer';
 import Footer from '../footer/footer';
-import { PageHeader } from '../header/header';
+import {PageHeader} from '../header/header';
+import Tabs from '../tabs/tabs';
+import {getActiveCard, getActiveTab, getCardId, getFilms} from '../../store/app-data/selectors'
+import { FilmList } from '../film-list/film-list';
+import Card from '../card/card'
+import SimilarFilms from '../similar-films/similar-films';
 
 
-const MoviePage = () => {
+const MoviePage = ({films}) => {
+
+
+  const {id} = useParams();
+  const film = films.find((film) => film.id === id);
+
+  console.log(id);
+  console.log(film);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={''} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -51,44 +65,23 @@ const MoviePage = () => {
           </div>
 
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
 
-            <div className="movie-rating">
-              <div className="movie-rating__score">8,9</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">Very good</span>
-                <span className="movie-rating__count">240 ratings</span>
-              </p>
-            </div>
+            <Tabs films={films}/>
 
-            <div className="movie-card__text">
-              <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
-
-              <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
-
-              <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <div className="page-content">
-      <section className="catalog catalog--like-this">
+
+
+      {/* <FilmList props={props}/> */}
+      {/* {films.map((film) => <Card key = {film.id} {...film} onClick={onCardChoice} onMouseOver = {handleMouseOver}/>)} */}
+
+      <SimilarFilms films = {films} genre = {film.genre}/>
+
+      {/* <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
@@ -128,12 +121,19 @@ const MoviePage = () => {
             </h3>
           </article>
         </div>
-      </section>
+      </section> */}
 
       <Footer/>
+
     </div>
   </React.Fragment>
   );
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  films: getFilms(state),
+  // activeCard: getActiveCard(state)
+});
+
+export {MoviePage};
+export default connect(mapStateToProps, null)(MoviePage);

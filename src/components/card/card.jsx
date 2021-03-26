@@ -22,7 +22,8 @@ const Card = (props) => {
   };
 
 
-  const {onMouseOver, ...films} = props;
+
+  const {onMouseOver, onClick, ...films} = props;
 
   return (
     <article onMouseOver = {handleMouseOver} onMouseLeave = {handleMouseLeave} className="small-movie-card catalog__movies-card">
@@ -33,13 +34,15 @@ const Card = (props) => {
         }
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to="/films/:id?">
+        <Link onClick = {() => onClick(films.id)} className="small-movie-card__link" to={`/films/` + (films.id) + `?`}>
           {films.name}
         </Link>
       </h3>
     </article>
   );
 };
+
+
 
 Card.propTypes = {
   films: movieInfoProps,
