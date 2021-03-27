@@ -1,6 +1,7 @@
 export const ActionType = {
   GENRE_CHANGE: `app/genre-change`,
   LOAD_FILMS: 'data/load-films',
+  LOAD_COMMENTS: 'data/load-comments',
   REQUIRED_AUTHORIZATION: 'user/required-authorization',
   REDIRECT_TO_ROUTE: 'app/redirect-to-route',
   TAB_CHANGE: 'app/tab-change',
@@ -16,6 +17,12 @@ export const ActionType = {
       type: ActionType.LOAD_FILMS,
       payload: films
   });
+
+
+  export const loadComments = (comments) => ({
+    type: ActionType.LOAD_FILMS,
+    payload: comments
+});
 
   export const requiredAuthorization = (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,

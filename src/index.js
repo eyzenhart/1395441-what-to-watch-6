@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {createAPI} from './store/api'
-import {authCheck} from './store/api-actions';
+import {authCheck, fetchFilmsList} from './store/api-actions';
 import {AUTH_STATUS} from './store/api-actions';
 import {redirect} from './store/redirect';
 import {rootReducer} from './store/root-reducer';
@@ -30,6 +30,7 @@ const store = createStore(
 );
 
 store.dispatch(authCheck());
+store.dispatch(fetchFilmsList());
 
 
 ReactDOM.render(

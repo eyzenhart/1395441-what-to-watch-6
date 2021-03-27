@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
+import { fetchComments } from '../../store/api-actions';
+import {getComments} from '../../store/app-data/selectors';
+import ReviewItem from '../review-item/review-item';
 
 
-const MoviePageReviews = () => {
+const MoviePageReviews = ({comments, onLoadComments}) => {
+
+  useEffect(() => {
+    onLoadComments();
+  }, []);
+
+  console.log(comments)
+
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        <div className="review">
+
+        {comments.map((comment) => <ReviewItem comment = {comment}/>)}
+        {/* <div className="review">
           <blockquote className="review__quote">
             <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.</p>
 
@@ -82,10 +95,21 @@ const MoviePageReviews = () => {
           </blockquote>
 
           <div className="review__rating">7,0</div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
 };
 
-export default MoviePageReviews;
+const mapStateToProps = (state) => ({
+  comments: getComments(state)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadComments() {
+    dispatch(fetchComments())
+  }
+})
+
+export {MoviePageReviews};
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePageReviews);

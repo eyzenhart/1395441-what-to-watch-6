@@ -3,9 +3,8 @@ import MoviePageDetails from '../movie-page-details/movie-page-details';
 import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 import MoviePageOverview from '../movie-page-overview/movie-page-overview';
 
-const Tabs = (props) => {
+const Tabs = ({film, comments}) => {
 
-  const {films} = props;
 
   const [activeTab, setActiveTab] = useState('Overview');
 
@@ -14,28 +13,15 @@ const Tabs = (props) => {
     setActiveTab(evt.target.dataset.name)
   };
 
-  // const getChosenTab = (evt, activeTab) => {
-  //   switch(activeTab) {
-  //     case `Overview`:
-  //       return " movie-nav__item--active"
-  //     case `Details`:
-  //       return " movie-nav__item--active"
-  //     case `Reviews`:
-  //       return " movie-nav__item--active"
-  //   // if (activeTab === evt.target.dataset.name) {
-  //   //   return " movie-nav__item--active"
-  //   // }
-  // }
-
 
   const getTabInfo = (activeTab) => {
     switch(activeTab) {
       case `Overview`:
-        return <MoviePageOverview films={films}/>
+        return <MoviePageOverview film={film}/>
       case `Details`:
-        return <MoviePageDetails films={films}/>
+        return <MoviePageDetails film={film}/>
       case `Reviews`:
-        return <MoviePageReviews films={films}/>
+        return <MoviePageReviews comments={comments} film={film}/>
     }
   };
 

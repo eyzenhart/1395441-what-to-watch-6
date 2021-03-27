@@ -3,11 +3,12 @@ import {ActionType} from '../actions';
 const initialState = {
   activeGenre: `All genres`,
   films: [],
+  comments: [],
   currentFilms: [],
   genreList: [],
   isFilmListLoaded: false,
   activeTab: 'Overview',
-  activeCard: ' '
+  activeCard: ' ',
 }
 
 const appData = (state = initialState, action) => {
@@ -20,6 +21,13 @@ const appData = (state = initialState, action) => {
         currentFilms: action.payload,
         isFilmListLoaded: true
       };
+
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload
+      }
+
 
     case ActionType.GENRE_CHANGE:
       return {

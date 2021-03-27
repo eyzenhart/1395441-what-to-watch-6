@@ -5,26 +5,22 @@ import { NameSpace } from '../../store/root-reducer';
 import Footer from '../footer/footer';
 import {PageHeader} from '../header/header';
 import Tabs from '../tabs/tabs';
-import {getActiveCard, getActiveTab, getCardId, getFilms} from '../../store/app-data/selectors'
+import {getActiveCard, getActiveTab, getCardId, getComments, getFilms} from '../../store/app-data/selectors'
 import { FilmList } from '../film-list/film-list';
 import Card from '../card/card'
 import SimilarFilms from '../similar-films/similar-films';
 
 
-const MoviePage = ({films}) => {
-
+const MoviePage = ({films, comments}) => {
 
   const {id} = useParams();
-  const film = films.find((film) => film.id === id);
-
-  console.log(id);
-  console.log(film);
+  const film = films.find((film) => film.id == id);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={''} alt="The Grand Budapest Hotel" />
+          <img src={film.background_image} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,10 +29,10 @@ const MoviePage = ({films}) => {
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="movie-card__title">{film.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">Drama</span>
-              <span className="movie-card__year">2014</span>
+              <span className="movie-card__genre">{film.genre}</span>
+              <span className="movie-card__year">{film.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -61,12 +57,12 @@ const MoviePage = ({films}) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={film.poster_image} alt={film.name} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
 
-            <Tabs films={films}/>
+            <Tabs film={film} comments = {comments}/>
 
           </div>
         </div>
@@ -74,54 +70,14 @@ const MoviePage = ({films}) => {
     </section>
 
     <div className="page-content">
-
-
-      {/* <FilmList props={props}/> */}
-      {/* {films.map((film) => <Card key = {film.id} {...film} onClick={onCardChoice} onMouseOver = {handleMouseOver}/>)} */}
-
-      <SimilarFilms films = {films} genre = {film.genre}/>
-
-      {/* <section className="catalog catalog--like-this">
+      <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-
         <div className="catalog__movies-list">
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
 
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-            </h3>
-          </article>
+          <SimilarFilms films = {films} genre = {film.genre}/>
 
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-            </h3>
-          </article>
         </div>
-      </section> */}
+      </section>
 
       <Footer/>
 
@@ -132,7 +88,7 @@ const MoviePage = ({films}) => {
 
 const mapStateToProps = (state) => ({
   films: getFilms(state),
-  // activeCard: getActiveCard(state)
+  comments: getComments(state)
 });
 
 export {MoviePage};
