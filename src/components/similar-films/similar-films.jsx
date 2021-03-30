@@ -1,15 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Card from '../card/card';
 
-const SimilarFilms = ({films, genre}) => {
+const SimilarFilms = ({films, onCardChoice}) => {
 
   return (
     <div className="catalog__movies-list">
 
-      {films.map((film) => film.genre == genre ? <Card {...film}/> : null).slice(0, 5)}
+      {films.map((film) => <Card onClick={onCardChoice} {...film}/>)}
 
     </div>
   )
 };
 
-export default SimilarFilms;
+const mapDispatchToProps = (dispatch) => ({
+  onCardChoice(id) {
+    dispatch(getCardId(id))
+  }
+});
+
+export default connect(null, mapDispatchToProps)(SimilarFilms);

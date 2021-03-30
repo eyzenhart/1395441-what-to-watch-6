@@ -11,13 +11,14 @@ import Card from '../card/card'
 import SimilarFilms from '../similar-films/similar-films';
 
 
-const MoviePage = ({films, comments}) => {
+const MoviePage = ({films}) => {
 
   const {id} = useParams();
   const film = films.find((film) => film.id == id);
+  const newStyle = {backgroundColor: film.background_color}
 
   return (<React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section style = {newStyle} className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={film.background_image} alt={film.name} />
@@ -48,7 +49,7 @@ const MoviePage = ({films, comments}) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <Link to="/films/1/review" className="btn movie-card__button">Add review</Link>
+              <Link to={"/films/" + (film.id) + "/review"} className="btn movie-card__button">Add review</Link>
             </div>
           </div>
         </div>
@@ -62,7 +63,7 @@ const MoviePage = ({films, comments}) => {
 
           <div className="movie-card__desc">
 
-            <Tabs film={film} comments = {comments}/>
+            <Tabs film={film}/>
 
           </div>
         </div>
@@ -74,7 +75,7 @@ const MoviePage = ({films, comments}) => {
         <h2 className="catalog__title">More like this</h2>
         <div className="catalog__movies-list">
 
-          <SimilarFilms films = {films} genre = {film.genre}/>
+          <SimilarFilms films = {films.filter((movie) => movie.genre == film.genre).slice(0, 4)}/>
 
         </div>
       </section>
@@ -88,7 +89,6 @@ const MoviePage = ({films, comments}) => {
 
 const mapStateToProps = (state) => ({
   films: getFilms(state),
-  comments: getComments(state)
 });
 
 export {MoviePage};

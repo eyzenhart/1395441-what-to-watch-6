@@ -3,7 +3,7 @@ import MoviePageDetails from '../movie-page-details/movie-page-details';
 import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 import MoviePageOverview from '../movie-page-overview/movie-page-overview';
 
-const Tabs = ({film, comments}) => {
+const Tabs = ({film}) => {
 
 
   const [activeTab, setActiveTab] = useState('Overview');
@@ -21,7 +21,7 @@ const Tabs = ({film, comments}) => {
       case `Details`:
         return <MoviePageDetails film={film}/>
       case `Reviews`:
-        return <MoviePageReviews comments={comments} film={film}/>
+        return <MoviePageReviews film={film}/>
     }
   };
 

@@ -5,10 +5,16 @@ export const AUTH_STATUS = {
   NO_AUTH: 'NO_AUTH'
 };
 
-export const fetchComments = () => (dispatch, _getState, api) => (
-  api.get(`/comments/:film_id`)
+// export const fetchComments = () => (dispatch, _getState, api) => (
+//   api.get(`/comments/:film_id`)
+//   .then(({data}) => dispatch(loadComments(data)))
+// );
+
+export const fetchComments = () => (dispatch, _getState, api, id) => (
+  api.get(`/comments/` + id)
   .then(({data}) => dispatch(loadComments(data)))
 );
+
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => (
   api.get(`/films`)

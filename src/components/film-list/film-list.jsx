@@ -12,6 +12,7 @@ const FilmList = (props) => {
 
   const {films, isFilmListLoaded, onLoadFilmList, onCardChoice} = props;
 
+
   const [activeCard, setActiveCard] = useState();
 
 

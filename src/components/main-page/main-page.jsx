@@ -5,11 +5,19 @@ import FilmList from '../film-list/film-list';
 import movieInfoProps from '../../props/movie-info.props';
 import GenreList from '../genre-list/genre-list';
 import Footer from '../footer/footer';
+import ShowMoreButton from '../show-more-button/show-more-button';
+import { connect } from 'react-redux';
+import {getCurrentFilms} from '../../store/app-data/selectors';
+
 
 
 const MainPage = (props) => {
 
   const {films, promo} = props;
+
+  // const shortFilmList = films.splice(0,8)
+  // console.log(shortFilmList)
+
 
   return (<React.Fragment>
 
@@ -23,9 +31,13 @@ const MainPage = (props) => {
 
         <FilmList films = {films}/>
 
-        <div className="catalog__more">
+        {/* <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
-        </div>
+        </div> */}
+
+      {/* {films.slice() > 8 ? <ShowMoreButton films = {films}/> : null} */}
+      <ShowMoreButton films = {films}/>
+
       </section>
 
       <Footer/>
@@ -45,5 +57,8 @@ MainPage.propTypes = {
       })
   )};
 
+  const mapStateToProps = (state) => ({
+    films: getCurrentFilms(state)
+  });
 
-  export default MainPage;
+  export default connect(mapStateToProps, null)(MainPage);
