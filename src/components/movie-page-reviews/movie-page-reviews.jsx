@@ -7,11 +7,6 @@ import ReviewItem from '../review-item/review-item';
 
 const MoviePageReviews = ({comments, onLoadComments, film}) => {
 
-  // const id = film.id;
-
-  console.log(film.id)
-
-
   useEffect(() => {
     if (film.id) {
       onLoadComments(film.id);

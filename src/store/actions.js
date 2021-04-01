@@ -20,7 +20,7 @@ export const ActionType = {
 
 
   export const loadComments = (comments) => ({
-    type: ActionType.LOAD_FILMS,
+    type: ActionType.LOAD_COMMENTS,
     payload: comments
 });
 

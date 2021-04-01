@@ -2,7 +2,7 @@ import React from 'react';
 import ReviewForm from '../../components/review-form/review-form';
 import {Link} from 'react-router-dom';
 
-const AddReview = () => {
+const AddReview = ({film}) => {
 
   return (
     <section className="movie-card movie-card--full">

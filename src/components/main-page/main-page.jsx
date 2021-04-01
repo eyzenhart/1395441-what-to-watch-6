@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Film from '../film/film';
 import propTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
@@ -10,13 +10,11 @@ import { connect } from 'react-redux';
 import {getCurrentFilms} from '../../store/app-data/selectors';
 
 
-
 const MainPage = (props) => {
 
   const {films, promo} = props;
 
-  // const shortFilmList = films.splice(0,8)
-  // console.log(shortFilmList)
+  const [listLength, setListLength] = useState(8);
 
 
   return (<React.Fragment>
@@ -29,14 +27,9 @@ const MainPage = (props) => {
 
         <GenreList films = {films}/>
 
-        <FilmList films = {films}/>
+        <FilmList films = {films.slice(0, listLength)}/>
 
-        {/* <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div> */}
-
-      {/* {films.slice() > 8 ? <ShowMoreButton films = {films}/> : null} */}
-      <ShowMoreButton films = {films}/>
+        {films.slice(8) ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : null}
 
       </section>
 

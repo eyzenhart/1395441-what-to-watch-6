@@ -1,16 +1,12 @@
-import {loadFilms, requiredAuthorization, redirectToRoute} from './actions';
+import {loadFilms, loadComments, requiredAuthorization, redirectToRoute} from './actions';
 
 export const AUTH_STATUS = {
   AUTH: 'AUTH',
   NO_AUTH: 'NO_AUTH'
 };
 
-// export const fetchComments = () => (dispatch, _getState, api) => (
-//   api.get(`/comments/:film_id`)
-//   .then(({data}) => dispatch(loadComments(data)))
-// );
 
-export const fetchComments = () => (dispatch, _getState, api, id) => (
+export const fetchComments = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/` + id)
   .then(({data}) => dispatch(loadComments(data)))
 );

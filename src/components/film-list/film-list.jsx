@@ -10,10 +10,8 @@ import {getCurrentFilms, getLoadedFilmListStatus, getActiveCard} from '../../sto
 
 const FilmList = (props) => {
 
+
   const {films, isFilmListLoaded, onLoadFilmList, onCardChoice} = props;
-
-
-  const [activeCard, setActiveCard] = useState();
 
 
   useEffect(() => {
@@ -27,14 +25,10 @@ const FilmList = (props) => {
   };
 
 
-  const handleMouseOver = (id) => {
-    setActiveCard(id);
-  };
-
   return (
     <div className="catalog__movies-list">
 
-      {films.map((film) => <Card key = {film.id} {...film} onClick={onCardChoice} onMouseOver = {handleMouseOver}/>)}
+      {films.map((film) => <Card key = {film.id} {...film} onClick={onCardChoice}/>)}
 
     </div>
   );
@@ -45,10 +39,11 @@ FilmList.propTypes = {
   films: movieInfoProps
 };
 
+
 const mapStateToProps = (state) => ({
-  films: getCurrentFilms(state),
   isFilmListLoaded: getLoadedFilmListStatus(state)
 });
+
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadFilmList() {
@@ -57,7 +52,8 @@ const mapDispatchToProps = (dispatch) => ({
   onCardChoice(id) {
     dispatch(getCardId(id))
   }
-})
+});
+
 
 export {FilmList};
 export default connect(mapStateToProps, mapDispatchToProps)(FilmList);
