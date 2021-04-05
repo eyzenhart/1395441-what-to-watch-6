@@ -5,7 +5,11 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: 'user/required-authorization',
   REDIRECT_TO_ROUTE: 'app/redirect-to-route',
   TAB_CHANGE: 'app/tab-change',
-  GET_CARD_ID: 'app/card-id'
+  GET_CARD_ID: 'app/card-id',
+  ADD_FAVORITE_FILM: 'app/get-film',
+  ADD_COMMENT: 'app/add-comment',
+  LOAD_PROMO_FILM: 'app/load-promo-film',
+  GET_USER_DATA: 'user/get-user-data'
 };
 
   export const redirectToRoute = (url) => ({
@@ -42,4 +46,24 @@ export const ActionType = {
   export const getCardId = (id) => ({
     type: ActionType.GET_CARD_ID,
     payload: id
+  });
+
+  export const addFilm = (film) => ({
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: film
+  });
+
+  export const addComment = (comment) => ({
+    type: ActionType.ADD_COMMENT,
+    payload: comment
+  });
+
+  export const loadPromoFilm = (film) => ({
+    type: ActionType.LOAD_PROMO_FILM,
+    payload: film
+  });
+
+  export const getUserData = (userData) => ({
+    type: ActionType.GET_USER_DATA,
+    payload: userData.data
   });

@@ -1,21 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
-import { NameSpace } from '../../store/root-reducer';
 import Footer from '../footer/footer';
 import {PageHeader} from '../header/header';
 import Tabs from '../tabs/tabs';
-import {getActiveCard, getActiveTab, getCardId, getComments, getFilms} from '../../store/app-data/selectors'
-import { FilmList } from '../film-list/film-list';
-import Card from '../card/card'
+import {getFilms} from '../../store/app-data/selectors';
 import SimilarFilms from '../similar-films/similar-films';
+import {AUTH_STATUS} from '../../store/api-actions';
+import {getAuthStatus} from '../../store/user/selectors';
+import {postFavouriteFilm} from '../../store/api-actions';
+import propTypes from 'prop-types';
+import movieInfoProps from '../../props/movie-info.props';
 
 
-const MoviePage = ({films}) => {
+const MoviePage = ({films, authorizationStatus, onFilmAdd}) => {
 
   const {id} = useParams();
   const film = films.find((film) => film.id == id);
   const newStyle = {backgroundColor: film.background_color}
+
 
   return (<React.Fragment>
     <section style = {newStyle} className="movie-card movie-card--full">
@@ -26,7 +29,7 @@ const MoviePage = ({films}) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <PageHeader/>
+        <PageHeader authorizationStatus = {authorizationStatus}/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -37,19 +40,19 @@ const MoviePage = ({films}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link to={"/player/" + (film.id)} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              </Link>
+              <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} onClick = {() => onFilmAdd(film, film.id, 1)} className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
-              </button>
-              <Link to={"/films/" + (film.id) + "/review"} className="btn movie-card__button">Add review</Link>
+              </Link>
+              {authorizationStatus == AUTH_STATUS.AUTH ? <Link to={"/films/" + (film.id) + "/review"} className="btn movie-card__button">Add review</Link> : null}
             </div>
           </div>
         </div>
@@ -87,9 +90,23 @@ const MoviePage = ({films}) => {
   );
 };
 
+
+MoviePage.propTypes = {
+  films: movieInfoProps,
+  authorizationStatus: propTypes.string,
+  onFilmAdd: propTypes.func
+};
+
 const mapStateToProps = (state) => ({
   films: getFilms(state),
+  authorizationStatus: getAuthStatus(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onFilmAdd(film, id, status) {
+    dispatch(postFavouriteFilm(film, id, status))
+  }
+})
+
 export {MoviePage};
-export default connect(mapStateToProps, null)(MoviePage);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

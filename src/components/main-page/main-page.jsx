@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import Film from '../film/film';
-import propTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import movieInfoProps from '../../props/movie-info.props';
 import GenreList from '../genre-list/genre-list';
 import Footer from '../footer/footer';
 import ShowMoreButton from '../show-more-button/show-more-button';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {getCurrentFilms} from '../../store/app-data/selectors';
 
 
-const MainPage = (props) => {
-
-  const {films, promo} = props;
+const MainPage = ({films}) => {
 
   const [listLength, setListLength] = useState(8);
+
+  // const endOfFilms = films.length - listLength;
+
+
+  // const getButton = (films, listLength) => {
+  //   if ((films.length - listLength) > 8) {
+  //     return <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/>
+  //   } else {
+  //     setListLength(listLength + (films.length - listLength))
+  //   }
+  // };
+
+
+  // console.log(films.length)
+  // console.log(listLength)
+  // console.log(films.length - listLength)
+  // console.log((films.length - listLength) > 8)
 
 
   return (<React.Fragment>
 
-    {promo.map((promoData) => <Film {...promoData} key = {promoData.promoTitle}/>)}
+    <Film/>
 
     <div className="page-content">
       <section className="catalog">
@@ -29,7 +43,9 @@ const MainPage = (props) => {
 
         <FilmList films = {films.slice(0, listLength)}/>
 
-        {films.slice(8) ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : null}
+        {(films.length - listLength) > 8 ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : console.log(films.length - listLength)}
+        {/* // setListLength(listLength + (films.length - listLength))} */}
+         {/* {getButton(films, listLength)} */}
 
       </section>
 
@@ -42,13 +58,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   films: movieInfoProps,
-  promo: propTypes.arrayOf(
-      propTypes.shape({
-        promoTitle: propTypes.string,
-        promoGenre: propTypes.string,
-        promoYear: propTypes.string
-      })
-  )};
+};
 
   const mapStateToProps = (state) => ({
     films: getCurrentFilms(state)

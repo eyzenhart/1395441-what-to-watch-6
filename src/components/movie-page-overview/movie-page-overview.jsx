@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 const MoviePageOverview = ({film}) => {
 
@@ -30,10 +31,19 @@ const MoviePageOverview = ({film}) => {
         {film.description}
         <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
 
-        <p className="movie-card__starring"><strong>Starring: {film.starring.map((person) => person + ' ')} and other</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {film.starring.map((person) => person + ', ')} and other</strong></p>
       </div>
     </React.Fragment>
   )
+};
+
+MoviePageOverview.propTypes ={
+  film: propTypes.shape({
+    director: propTypes.string,
+    starring: propTypes.arrayOf(propTypes.string),
+    rating: propTypes.number,
+    scores_count: propTypes.number,
+  })
 };
 
 export default MoviePageOverview;

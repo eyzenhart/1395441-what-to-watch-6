@@ -1,6 +1,8 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 const MoviePageDetails = ({film}) => {
+
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -11,7 +13,7 @@ const MoviePageDetails = ({film}) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {film.starring}
+            {film.starring.map((person) => <div>{person}</div>)}
           </span>
         </p>
       </div>
@@ -32,6 +34,16 @@ const MoviePageDetails = ({film}) => {
       </div>
     </div>
   )
+};
+
+MoviePageDetails.propTypes ={
+  film: propTypes.shape({
+    director: propTypes.string,
+    starring: propTypes.arrayOf(propTypes.string),
+    run_time: propTypes.number,
+    genre: propTypes.string,
+    released: propTypes.number
+  })
 };
 
 export default MoviePageDetails;

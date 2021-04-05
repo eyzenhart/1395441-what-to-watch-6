@@ -8,3 +8,5 @@ export const getActiveGenre = (state) => state[NameSpace.DATA].activeGenre;
 export const getLoadedFilmListStatus = (state) => state[NameSpace.DATA].isFilmListLoaded;
 export const getActiveTab = (state) => state[NameSpace.DATA].activeTab;
 export const getActiveCard = (state) => state[NameSpace.DATA].activeCard;
+export const getFavouriteFilms = (state) => state[NameSpace.DATA].myFilms;
+export const getPromoFilm = (state) => state[NameSpace.DATA].promoFilm;

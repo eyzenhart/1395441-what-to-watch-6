@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import MoviePageDetails from '../movie-page-details/movie-page-details';
 import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 import MoviePageOverview from '../movie-page-overview/movie-page-overview';
+import propTypes from 'prop-types';
 
 const Tabs = ({film}) => {
-
 
   const [activeTab, setActiveTab] = useState('Overview');
 
@@ -12,7 +12,6 @@ const Tabs = ({film}) => {
     evt.preventDefault();
     setActiveTab(evt.target.dataset.name)
   };
-
 
   const getTabInfo = (activeTab) => {
     switch(activeTab) {
@@ -24,7 +23,6 @@ const Tabs = ({film}) => {
         return <MoviePageReviews film={film}/>
     }
   };
-
 
   return (
     <div className="movie-card__desc">
@@ -43,6 +41,10 @@ const Tabs = ({film}) => {
       {getTabInfo(activeTab)}
     </div>
   )
+};
+
+Tabs.propTypes = {
+  film: propTypes.shape({})
 };
 
 export default Tabs;

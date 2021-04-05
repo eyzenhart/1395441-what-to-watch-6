@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import { connect } from 'react-redux';
-import { fetchComments } from '../../store/api-actions';
+import {connect} from 'react-redux';
+import {fetchComments} from '../../store/api-actions';
 import {getComments} from '../../store/app-data/selectors';
 import ReviewItem from '../review-item/review-item';
+import propTypes from 'prop-types';
 
 
 const MoviePageReviews = ({comments, onLoadComments, film}) => {
@@ -34,6 +35,15 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchComments(id))
   }
 });
+
+MoviePageReviews.propTypes = {
+  comments: propTypes.arrayOf(propTypes.shape),
+  onLoadComments: propTypes.func,
+  film: propTypes.shape({
+    id: propTypes.number
+  })
+
+}
 
 export {MoviePageReviews};
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageReviews);

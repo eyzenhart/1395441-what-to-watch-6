@@ -1,14 +1,21 @@
 import React from 'react';
 import ReviewForm from '../../components/review-form/review-form';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
+import {getFilms} from '../../store/app-data/selectors';
+import {connect} from 'react-redux';
+import movieInfoProps from '../../props/movie-info.props'
 
-const AddReview = ({film}) => {
+const AddReview = ({films}) => {
+
+  const {id} = useParams();
+  const film = films.find((film) => film.id == id);
+  const newStyle = {backgroundColor: film.background_color}
 
   return (
-    <section className="movie-card movie-card--full">
+    <section style={newStyle} className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={film.background_image} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +32,7 @@ const AddReview = ({film}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to='/films/:id?' className="breadcrumbs__link">The Grand Budapest Hotel</Link>
+                <Link to={'/films/' + film.id} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -41,16 +48,25 @@ const AddReview = ({film}) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={film.poster_image} alt={film.name + " poster"} width="218" height="327" />
         </div>
       </div>
 
       <div className="add-review">
-        <ReviewForm/>
+        <ReviewForm film = {film.id}/>
       </div>
 
     </section>
   );
 };
 
-export default AddReview;
+AddReview.propTypes = {
+  films: movieInfoProps
+};
+
+const mapStateToProps = (state) => ({
+  films: getFilms(state)
+});
+
+export {AddReview};
+export default connect(mapStateToProps, null)(AddReview);

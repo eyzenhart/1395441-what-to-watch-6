@@ -9,11 +9,10 @@ import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
 import movieInfoProps from '../../props/movie-info.props';
-import {PrivateRoute} from '../private-route/private-route';
+import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../store/browser-history';
 
 const App = (props) => {
-
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -31,22 +30,14 @@ const App = (props) => {
         <Route path = '/films/:id?' exact>
           <MoviePage {...props}/>
         </Route>
-        <Route path = '/films/:id/review' exact component = {AddReview}/>
+        <Route path = '/films/:id?/review' exact>
+          <AddReview {...props}/>
+        </Route>
+
         <Route component = {NotFound}/>
       </Switch>
     </BrowserRouter>
   );
 };
-
-
-App.propTypes = {
-  films: movieInfoProps,
-  promo: propTypes.arrayOf(
-      propTypes.shape({
-        promoTitle: propTypes.string,
-        promoGenre: propTypes.string,
-        promoYear: propTypes.string
-      })
-  )};
 
 export default App;

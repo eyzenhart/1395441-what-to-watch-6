@@ -2,11 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AUTH_STATUS} from '../../store/api-actions';
+import {getAuthStatus, getUser} from '../../store/user/selectors';
+import propTypes from 'prop-types';
 
 
-const PageHeader = (props) => {
-
-  const {authorizationStatus} = props;
+const PageHeader = ({authorizationStatus, userData}) => {
+  // console.log(userData.avatar_url)
 
   return (
     <header className="page-header movie-card__head">
@@ -20,15 +21,20 @@ const PageHeader = (props) => {
 
         <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} className="user-block">
           <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src='' alt="User avatar" width="63" height="63" />
           </div>
         </Link>
     </header>
   )
 };
 
+PageHeader.propTypes = {
+  authorizationStatus: propTypes.string,
+};
+
 const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: getAuthStatus(state),
+  userData: getUser(state)
 });
 
 export {PageHeader};

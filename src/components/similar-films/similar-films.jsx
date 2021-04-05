@@ -1,6 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Card from '../card/card';
+import propTypes from 'prop-types';
+import movieInfoProps from '../../props/movie-info.props';
+
 
 const SimilarFilms = ({films, onCardChoice}) => {
 
@@ -12,6 +15,11 @@ const SimilarFilms = ({films, onCardChoice}) => {
     </div>
   )
 };
+
+SimilarFilms.propTypes = {
+  films: movieInfoProps,
+  onCardChoice: propTypes.func
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onCardChoice(id) {

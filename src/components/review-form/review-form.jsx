@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import {review} from '../../store/api-actions';
+import propTypes from 'prop-types';
 
-const ReviewForm = () => {
+const ReviewForm = ({onSubmit, film}) => {
 
   const [rating, setRating] = useState(null);
   const [text, setText] = useState(``);
@@ -15,9 +18,14 @@ const ReviewForm = () => {
     }
   };
 
+  const handleFormSubmit = (evt) => {
+    evt.preventDefault();
+
+    onSubmit(text, rating, film);
+  };
 
   return (
-    <form onChange={handleChange} action="#" className="add-review__form">
+    <form onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
           <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -63,4 +71,17 @@ const ReviewForm = () => {
   );
 };
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  onSubmit: propTypes.func,
+  film: propTypes.shape({})
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(text, rating, film) {
+    dispatch(review(text, rating, film))
+  }
+});
+
+
+export {ReviewForm};
+export default connect(null, mapDispatchToProps)(ReviewForm);

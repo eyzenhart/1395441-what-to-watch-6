@@ -23,7 +23,7 @@ const Card = (props) => {
 
 
 
-  const {onMouseOver, onClick, ...film} = props;
+  const {onMouseOver, ...film} = props;
 
   return (
     <article onMouseOver = {handleMouseOver} onMouseLeave = {handleMouseLeave} className="small-movie-card catalog__movies-card">

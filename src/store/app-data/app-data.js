@@ -5,10 +5,12 @@ const initialState = {
   films: [],
   comments: [],
   currentFilms: [],
-  genreList: [],
+  genreList: ['All genres'],
   isFilmListLoaded: false,
   activeTab: 'Overview',
   activeCard: ' ',
+  myFilms: [],
+  promoFilm: {}
 }
 
 const appData = (state = initialState, action) => {
@@ -17,7 +19,7 @@ const appData = (state = initialState, action) => {
       return {
         ...state,
         films: action.payload,
-        genreList: Array.from(new Set(action.payload.map((film) => film.genre))),
+        genreList: Array.from(new Set([...state.genreList, ...action.payload.map((film) => film.genre)])),
         currentFilms: action.payload,
         isFilmListLoaded: true
       };
@@ -46,6 +48,24 @@ const appData = (state = initialState, action) => {
       return {
         ...state,
         activeCard: action.payload
+      }
+
+    case ActionType.ADD_FAVORITE_FILM:
+      return {
+        ...state,
+        myFilms: [...state.myFilms, action.payload]
+      }
+
+    case ActionType.ADD_COMMENT:
+      return {
+        ...state,
+        comments: [...state.comments, action.payload]
+      }
+
+    case ActionType.LOAD_PROMO_FILM:
+      return {
+        ...state,
+        promoFilm: action.payload
       }
   }
 
