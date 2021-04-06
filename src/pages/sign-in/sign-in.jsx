@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {connect} from 'react-redux';
-import {login} from '../../store/api-actions'
+import {login} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
 import {PageHeader} from '../../components/header/header';
 import propTypes from 'prop-types';
@@ -22,7 +22,9 @@ const SignIn = ({onSubmit}) => {
 
   return (
     <div className="user-page">
+
       <PageHeader/>
+
 
       <div className="sign-in user-page__content">
         <form method = "POST" onSubmit={handleSubmit} action="#" className="sign-in__form">
@@ -49,7 +51,7 @@ const SignIn = ({onSubmit}) => {
 
 SignIn.propTypes = {
   onSubmit: propTypes.func
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {

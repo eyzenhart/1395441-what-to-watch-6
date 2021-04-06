@@ -13,7 +13,7 @@ const MoviePageDetails = ({film}) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {film.starring.map((person) => <div>{person}</div>)}
+            {film.starring.map((person) => <div key={person}>{person}</div>)}
           </span>
         </p>
       </div>
@@ -33,10 +33,10 @@ const MoviePageDetails = ({film}) => {
         </p>
       </div>
     </div>
-  )
+  );
 };
 
-MoviePageDetails.propTypes ={
+MoviePageDetails.propTypes = {
   film: propTypes.shape({
     director: propTypes.string,
     starring: propTypes.arrayOf(propTypes.string),

@@ -1,40 +1,58 @@
-import React, {useRef} from 'react';
-import { connect } from 'react-redux';
+import React, {useRef, useState} from 'react';
+import {connect} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
 import movieInfoProps from '../../props/movie-info.props';
-import { getCurrentFilms, getFilms } from '../../store/app-data/selectors';
+import {getFilms} from '../../store/app-data/selectors';
 
 const Player = ({films}) => {
+
+  const [time, setCurrentTime] = useState();
+  const [duration, setDuration] = useState();
 
   const {id} = useParams();
 
   const videoRef = useRef();
 
-  console.log(videoRef)
-
   const film = films.find((film) => film.id == id);
 
   const handleVideoPlay = () => {
-    videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause()
-  }
+    videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+  };
 
   const handleVideoFullScreen = () => {
-    videoRef.current.requestFullscreen()
+    videoRef.current.requestFullscreen();
+  };
+
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+    const {currentTime} = video;
+    setCurrentTime(currentTime)
+  };
+
+  const handleDurationChange = () => {
+    const video = videoRef.current;
+    setDuration(video.duration)
+  };
+
+  const getTime = (duration, time) => {
+    const fullTime = duration - time;
+    const hours = Math.floor(fullTime / 60 / 60);
+    return hours + `:` + (Math.floor(fullTime / 60) - (hours * 60)) + `:` + Math.floor(fullTime % 60);
   }
 
   return (
     <div className="player">
-      <video ref = {videoRef} autoPlay className="player__video" poster={film.poster_image}> <source type="video/mp4" src={film.video_link}/> </video>
+      <video onTimeUpdate = {handleTimeUpdate} onDurationChange = {handleDurationChange} ref = {videoRef} autoPlay className="player__video" poster={film.poster_image}> <source type="video/mp4" src={film.video_link}/> </video>
 
       <Link type="button" className="player__exit" to = {`/films/` + (film.id) + `?`}>Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: 30 + `%`}}>Toggler</div>
+            <progress className="player__progress" value={time} max={duration}></progress>
+            <div className="player__toggler" style={{left: (time * 100 / duration) + '%'}}>Toggler</div>
           </div>
-          <div className="player__time-value">{}</div>
+          <div className="player__time-value">{getTime(duration, time)}</div>
         </div>
 
         <div className="player__controls-row">
@@ -64,7 +82,7 @@ Player.propTypes = {
 
 const mapStateToProps = (state) => ({
   films: getFilms(state)
-})
+});
 
 export {Player};
 export default connect(mapStateToProps, null)(Player);

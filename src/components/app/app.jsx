@@ -1,6 +1,5 @@
 import React from 'react';
 import MainPage from '../main-page/main-page';
-import propTypes from 'prop-types';
 import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
 import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
@@ -8,7 +7,6 @@ import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
-import movieInfoProps from '../../props/movie-info.props';
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../store/browser-history';
 

@@ -17,10 +17,10 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload
-      }
+      };
   }
 
-  return state
+  return state;
 };
 
 export {user};

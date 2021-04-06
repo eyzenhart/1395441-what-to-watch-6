@@ -19,11 +19,11 @@ const MoviePageReviews = ({comments, onLoadComments, film}) => {
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
 
-        {comments.map((comment) => <ReviewItem comment = {comment}/>)}
+        {comments.map((comment) => <ReviewItem key={comment.id} comment = {comment}/>)}
 
       </div>
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state) => ({
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadComments(id) {
-    dispatch(fetchComments(id))
+    dispatch(fetchComments(id));
   }
 });
 
@@ -42,8 +42,7 @@ MoviePageReviews.propTypes = {
   film: propTypes.shape({
     id: propTypes.number
   })
-
-}
+};
 
 export {MoviePageReviews};
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageReviews);

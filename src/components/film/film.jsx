@@ -3,9 +3,9 @@ import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import PageHeader from '../header/header';
 import {AUTH_STATUS, postFavouriteFilm} from '../../store/api-actions';
-import { connect } from 'react-redux';
-import { getPromoFilm } from '../../store/app-data/selectors';
-import { getAuthStatus } from '../../store/user/selectors';
+import {connect} from 'react-redux';
+import {getPromoFilm} from '../../store/app-data/selectors';
+import {getAuthStatus} from '../../store/user/selectors';
 
 
 const Film = ({promoFilm, onFilmAdd, authorizationStatus}) => {
@@ -23,7 +23,7 @@ const Film = ({promoFilm, onFilmAdd, authorizationStatus}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={promoFilm.poster_image} alt={promoFilm.name + " poster"} width="218" height="327" />
+            <img src={promoFilm.poster_image} alt={promoFilm.name + ` poster`} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{promoFilm.name}</h2>
@@ -73,10 +73,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmAdd(film, id, status) {
-    dispatch(postFavouriteFilm(film, id, status))
+    dispatch(postFavouriteFilm(film, id, status));
   }
-})
+});
 
 // export default Film;
 export {Film};
-export default connect(mapStateToProps, mapDispatchToProps)(Film)
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

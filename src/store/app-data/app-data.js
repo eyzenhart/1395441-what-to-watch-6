@@ -5,13 +5,13 @@ const initialState = {
   films: [],
   comments: [],
   currentFilms: [],
-  genreList: ['All genres'],
+  genreList: [`All genres`],
   isFilmListLoaded: false,
-  activeTab: 'Overview',
-  activeCard: ' ',
+  activeTab: `Overview`,
+  activeCard: ` `,
   myFilms: [],
   promoFilm: {}
-}
+};
 
 const appData = (state = initialState, action) => {
   switch (action.type) {
@@ -28,7 +28,7 @@ const appData = (state = initialState, action) => {
       return {
         ...state,
         comments: action.payload
-      }
+      };
 
 
     case ActionType.GENRE_CHANGE:
@@ -48,28 +48,28 @@ const appData = (state = initialState, action) => {
       return {
         ...state,
         activeCard: action.payload
-      }
+      };
 
     case ActionType.ADD_FAVORITE_FILM:
       return {
         ...state,
         myFilms: [...state.myFilms, action.payload]
-      }
+      };
 
     case ActionType.ADD_COMMENT:
       return {
         ...state,
         comments: [...state.comments, action.payload]
-      }
+      };
 
     case ActionType.LOAD_PROMO_FILM:
       return {
         ...state,
         promoFilm: action.payload
-      }
+      };
   }
 
-  return state
+  return state;
 };
 
 export {appData};

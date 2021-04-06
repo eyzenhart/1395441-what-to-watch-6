@@ -61,7 +61,7 @@ const ReviewForm = ({onSubmit, film}) => {
       </div>
 
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" min="50" max="400"></textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
@@ -74,11 +74,11 @@ const ReviewForm = ({onSubmit, film}) => {
 ReviewForm.propTypes = {
   onSubmit: propTypes.func,
   film: propTypes.shape({})
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(text, rating, film) {
-    dispatch(review(text, rating, film))
+    dispatch(review(text, rating, film));
   }
 });
 

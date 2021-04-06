@@ -3,13 +3,13 @@ import ReviewForm from '../../components/review-form/review-form';
 import {Link, useParams} from 'react-router-dom';
 import {getFilms} from '../../store/app-data/selectors';
 import {connect} from 'react-redux';
-import movieInfoProps from '../../props/movie-info.props'
+import movieInfoProps from '../../props/movie-info.props';
 
 const AddReview = ({films}) => {
 
   const {id} = useParams();
   const film = films.find((film) => film.id == id);
-  const newStyle = {backgroundColor: film.background_color}
+  const newStyle = {backgroundColor: film.background_color};
 
   return (
     <section style={newStyle} className="movie-card movie-card--full">
@@ -32,7 +32,7 @@ const AddReview = ({films}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={'/films/' + film.id} className="breadcrumbs__link">{film.name}</Link>
+                <Link to={`/films/` + film.id} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>

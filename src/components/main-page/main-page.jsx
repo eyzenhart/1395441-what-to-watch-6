@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Film from '../film/film';
 import FilmList from '../film-list/film-list';
 import movieInfoProps from '../../props/movie-info.props';
@@ -25,12 +25,6 @@ const MainPage = ({films}) => {
   // };
 
 
-  // console.log(films.length)
-  // console.log(listLength)
-  // console.log(films.length - listLength)
-  // console.log((films.length - listLength) > 8)
-
-
   return (<React.Fragment>
 
     <Film/>
@@ -43,9 +37,9 @@ const MainPage = ({films}) => {
 
         <FilmList films = {films.slice(0, listLength)}/>
 
-        {(films.length - listLength) > 8 ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : console.log(films.length - listLength)}
-        {/* // setListLength(listLength + (films.length - listLength))} */}
-         {/* {getButton(films, listLength)} */}
+        {(films.length - listLength) > 8 ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : setListLength(listLength + (films.length - listLength))}
+        {/* setListLength(listLength + (films.length - listLength)) */}
+        {/* {getButton(films, listLength)} */}
 
       </section>
 
@@ -60,8 +54,8 @@ MainPage.propTypes = {
   films: movieInfoProps,
 };
 
-  const mapStateToProps = (state) => ({
-    films: getCurrentFilms(state)
-  });
+const mapStateToProps = (state) => ({
+  films: getCurrentFilms(state)
+});
 
   export default connect(mapStateToProps, null)(MainPage);

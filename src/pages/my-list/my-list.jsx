@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import PageHeader from '../../components/header/header';
 import movieInfoProps from '../../props/movie-info.props';
-import {getFavouriteFilms } from '../../store/app-data/selectors';
+import {getFavouriteFilms} from '../../store/app-data/selectors';
 
 const MyList = ({films}) => {
 
@@ -31,8 +30,7 @@ MyList.propTypes = {
 
 const mapStateToProps = (state) => ({
   films: getFavouriteFilms(state)
-})
-
+});
 
 export {MyList};
 export default connect(mapStateToProps, null)(MyList);

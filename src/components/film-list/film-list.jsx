@@ -22,8 +22,8 @@ const FilmList = (props) => {
   }, [isFilmListLoaded]);
 
   if (!isFilmListLoaded) {
-    return <LoadingScreen/>
-  };
+    return <LoadingScreen/>;
+  }
 
 
   return (
@@ -51,10 +51,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadFilmList() {
-    dispatch(fetchFilmsList())
+    dispatch(fetchFilmsList());
   },
   onCardChoice(id) {
-    dispatch(getCardId(id))
+    dispatch(getCardId(id));
   }
 });
 

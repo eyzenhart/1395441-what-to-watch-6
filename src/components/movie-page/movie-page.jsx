@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
 import Footer from '../footer/footer';
-import {PageHeader} from '../header/header';
+import PageHeader from '../header/header';
 import Tabs from '../tabs/tabs';
 import {getFilms} from '../../store/app-data/selectors';
 import SimilarFilms from '../similar-films/similar-films';
@@ -17,7 +17,7 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd}) => {
 
   const {id} = useParams();
   const film = films.find((film) => film.id == id);
-  const newStyle = {backgroundColor: film.background_color}
+  const newStyle = {backgroundColor: film.background_color};
 
 
   return (<React.Fragment>
@@ -29,7 +29,7 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd}) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <PageHeader authorizationStatus = {authorizationStatus}/>
+        <PageHeader/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -40,19 +40,19 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <Link to={"/player/" + (film.id)} className="btn btn--play movie-card__button" type="button">
+              <Link to={`/player/` + (film.id)} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </Link>
-              <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} onClick = {() => onFilmAdd(film, film.id, 1)} className="btn btn--list movie-card__button" type="button">
+              <Link to={authorizationStatus == AUTH_STATUS.AUTH ? `/mylist` : `/login`} onClick = {() => onFilmAdd(film, film.id, 1)} className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
               </Link>
-              {authorizationStatus == AUTH_STATUS.AUTH ? <Link to={"/films/" + (film.id) + "/review"} className="btn movie-card__button">Add review</Link> : null}
+              {authorizationStatus == AUTH_STATUS.AUTH ? <Link to={`/films/` + (film.id) + `/review`} className="btn movie-card__button">Add review</Link> : null}
             </div>
           </div>
         </div>
@@ -104,9 +104,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmAdd(film, id, status) {
-    dispatch(postFavouriteFilm(film, id, status))
+    dispatch(postFavouriteFilm(film, id, status));
   }
-})
+});
 
 export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
