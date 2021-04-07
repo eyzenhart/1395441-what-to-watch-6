@@ -4,18 +4,20 @@ import {Link, useParams} from 'react-router-dom';
 import {getFilms} from '../../store/app-data/selectors';
 import {connect} from 'react-redux';
 import movieInfoProps from '../../props/movie-info.props';
+import { getUserData } from '../../store/actions';
+import propTypes from 'prop-types';
 
-const AddReview = ({films}) => {
+const AddReview = ({films, userData}) => {
 
   const {id} = useParams();
   const film = films.find((movies) => movies.id == id);
-  const newStyle = {backgroundColor: film.background_color};
+  const newStyle = {backgroundColor: film.backgroundColor};
 
   return (
     <section style={newStyle} className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={film.background_image} alt={film.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -42,13 +44,13 @@ const AddReview = ({films}) => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={userData.avatarUrl} alt="User avatar" width="63" height="63" />
             </div>
           </div>
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={film.poster_image} alt={film.name + ` poster`} width="218" height="327" />
+          <img src={film.posterImage} alt={film.name + ` poster`} width="218" height="327" />
         </div>
       </div>
 
@@ -61,11 +63,15 @@ const AddReview = ({films}) => {
 };
 
 AddReview.propTypes = {
-  films: movieInfoProps
+  films: movieInfoProps,
+  userData: propTypes.shape({
+    avatarUrl: propTypes.string
+  })
 };
 
 const mapStateToProps = (state) => ({
-  films: getFilms(state)
+  films: getFilms(state),
+  userData: getUserData(state)
 });
 
 export {AddReview};

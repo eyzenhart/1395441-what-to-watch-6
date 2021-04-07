@@ -11,13 +11,14 @@ import {getAuthStatus} from '../../store/user/selectors';
 import {postFavouriteFilm} from '../../store/api-actions';
 import propTypes from 'prop-types';
 import movieInfoProps from '../../props/movie-info.props';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {fetchFilmsList} from '../../store/api-actions';
 
 
 const MoviePage = ({films, authorizationStatus, onFilmAdd, isFilmListLoaded, onLoadFilmList}) => {
 
   const {id} = useParams();
   const film = films.find((movie) => movie.id == id);
-  const newStyle = {backgroundColor: film.background_color};
 
   useEffect(() => {
     if (!isFilmListLoaded) {
@@ -29,12 +30,19 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd, isFilmListLoaded, onL
     return <LoadingScreen/>;
   }
 
+  if (!film) {
+    return null;
+  }
+
+  const newStyle = {backgroundColor: film.backgroundColor};
+
+
 
   return (<React.Fragment>
       <section style = {newStyle} className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={film.background_image} alt={film.name} />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -71,7 +79,7 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd, isFilmListLoaded, onL
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={film.poster_image} alt={film.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">

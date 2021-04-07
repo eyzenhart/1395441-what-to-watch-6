@@ -13,19 +13,6 @@ export const ActionType = {
   SET_FORM_ERROR: `app/form-error`
 };
 
-// export const FilmsAdapter = (data) => {
-//   data.map((item) => {
-//     return {
-//       posterImage: item[`poster_image`],
-//       previewImage: item[`preview_image`],
-//       backgroundImage: item[`background_image`],
-//       backgroundColor: item[`background_color`],
-//       videoLink: item[`video_link`],
-//       previewVideoLink: item[`preview_video_link`],
-//       runTime: item[`run_time`]
-//     }
-//   });
-//  };
 
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
@@ -85,4 +72,4 @@ export const getUserData = (userData) => ({
 export const setFormError = (formError) => ({
   type: ActionType.SET_FORM_ERROR,
   payload: formError
-})
+});

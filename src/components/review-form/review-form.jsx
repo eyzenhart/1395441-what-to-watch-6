@@ -27,7 +27,7 @@ const ReviewForm = ({onSubmit, film, formError}) => {
   };
 
   return (<React.Fragment>
-    <form disabled={(text.length < 50 || text.length > 400) && rating} onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
+    <form  onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
           <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -65,7 +65,7 @@ const ReviewForm = ({onSubmit, film, formError}) => {
       <div className="add-review__text">
         <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" min="50" max="400"></textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button disabled={(text.length < 50 || text.length > 400) || !rating} className="add-review__btn" type="submit">Post</button>
         </div>
       </div>
     </form>
@@ -77,7 +77,7 @@ const ReviewForm = ({onSubmit, film, formError}) => {
 
 ReviewForm.propTypes = {
   onSubmit: propTypes.func,
-  film: propTypes.shape({})
+  film: propTypes.object
 };
 
 const mapStateToProps = (state) => ({

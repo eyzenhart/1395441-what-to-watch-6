@@ -43,7 +43,7 @@ const Player = ({films}) => {
 
   return (
     <div className="player">
-      <video onTimeUpdate = {handleTimeUpdate} onDurationChange = {handleDurationChange} ref = {videoRef} autoPlay className="player__video" poster={film.poster_image}> <source type="video/mp4" src={film.video_link}/> </video>
+      <video onTimeUpdate = {handleTimeUpdate} onDurationChange = {handleDurationChange} ref = {videoRef} autoPlay className="player__video" poster={film.posterImage}> <source type="video/mp4" src={film.videoLink}/> </video>
 
       <Link type="button" className="player__exit" to = {`/films/` + (film.id) + `?`}>Exit</Link>
 

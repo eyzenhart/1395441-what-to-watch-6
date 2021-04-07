@@ -21,7 +21,7 @@ const MoviePageDetails = ({film}) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{film.run_time}</span>
+          <span className="movie-card__details-value">{film.runTime}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -40,7 +40,7 @@ MoviePageDetails.propTypes = {
   film: propTypes.shape({
     director: propTypes.string,
     starring: propTypes.arrayOf(propTypes.string),
-    run_time: propTypes.number,
+    runTime: propTypes.number,
     genre: propTypes.string,
     released: propTypes.number
   })

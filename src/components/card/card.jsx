@@ -29,8 +29,8 @@ const Card = (props) => {
       <Link to={`/films/` + (film.id) + `?`}>
         <div className="small-movie-card__image">
           { isHovered ?
-            <PreviewPlayer src = {film.preview_video_link} image = {film.preview_image}/> :
-            <img src = {film.preview_image} alt = {film.name} width="280" height="175" />
+            <PreviewPlayer src = {film.previewVideoLink} image = {film.previewImage}/> :
+            <img src = {film.previewImage} alt = {film.name} width="280" height="175" />
           }
         </div>
       </Link>

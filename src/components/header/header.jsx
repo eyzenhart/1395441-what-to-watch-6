@@ -2,11 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AUTH_STATUS} from '../../store/api-actions';
-import {getAuthStatus, getUser} from '../../store/user/selectors';
+import {getAuthStatus} from '../../store/user/selectors';
 import propTypes from 'prop-types';
+import {getUser} from '../../store/user/selectors';
 
 
 const PageHeader = ({authorizationStatus, userData}) => {
+
 
   return (
     <header className="page-header user-page__head">
@@ -20,7 +22,7 @@ const PageHeader = ({authorizationStatus, userData}) => {
 
       <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} className="user-block">
         <div className="user-block__avatar">
-          <img src={authorizationStatus === AUTH_STATUS.AUTH ? userData.avatar_url : `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
+          <img src={authorizationStatus === AUTH_STATUS.AUTH ? userData.avatarUrl : `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
         </div>
       </Link>
     </header>
@@ -30,7 +32,7 @@ const PageHeader = ({authorizationStatus, userData}) => {
 PageHeader.propTypes = {
   authorizationStatus: propTypes.string,
   userData: propTypes.shape({
-    avatar_url: propTypes.string
+    avatarUrl: propTypes.string
   })
 };
 

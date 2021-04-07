@@ -1,23 +1,10 @@
 import {loadFilms, loadComments, requiredAuthorization, redirectToRoute, addFilm, loadPromoFilm, getUserData, setFormError} from './actions';
+import {filmsAdapter, promoAdapter, userAdapter} from '../adapter/adapter';
 
 export const AUTH_STATUS = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`
 };
-
-export const FilmsAdapter = (data) => {
-  data.map((item) => {
-    return {
-      posterImage: item[`poster_image`],
-      previewImage: item[`preview_image`],
-      backgroundImage: item[`background_image`],
-      backgroundColor: item[`background_color`],
-      videoLink: item[`video_link`],
-      previewVideoLink: item[`preview_video_link`],
-      runTime: item[`run_time`]
-    }
-  });
- };
 
 export const fetchComments = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/` + id)
@@ -26,9 +13,7 @@ export const fetchComments = (id) => (dispatch, _getState, api) => (
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-  .then(({data}) => dispatch(loadFilms(FilmsAdapter(data))))
-  // .then(({data}) => dispatch(loadFilms(data)))
-
+  .then(({data}) => dispatch(loadFilms(filmsAdapter(data))))
 );
 
 export const authCheck = () => (dispatch, _getState, api) => (
@@ -59,5 +44,5 @@ export const postFavouriteFilm = (film, id, status) => (dispatch, _getState, api
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
-  .then(({data}) => dispatch(loadPromoFilm(data)))
+  .then(({data}) => dispatch(loadPromoFilm(promoAdapter(data))))
 );

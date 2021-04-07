@@ -13,7 +13,7 @@ const Film = ({promoFilm, onFilmAdd, authorizationStatus}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={promoFilm.background_image} alt={promoFilm.name} />
+        <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +23,7 @@ const Film = ({promoFilm, onFilmAdd, authorizationStatus}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={promoFilm.poster_image} alt={promoFilm.name + ` poster`} width="218" height="327" />
+            <img src={promoFilm.posterImage} alt={promoFilm.name + ` poster`} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{promoFilm.name}</h2>
@@ -56,9 +56,9 @@ Film.propTypes = {
   promoFilm: propTypes.shape({
     id: propTypes.number,
     name: propTypes.string,
-    poster_image: propTypes.string,
-    background_image: propTypes.string,
-    background_color: propTypes.string,
+    posterImage: propTypes.string,
+    backgroundImage: propTypes.string,
+    backgroundColor: propTypes.string,
     genre: propTypes.string,
     released: propTypes.number,
   }),
