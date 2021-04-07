@@ -10,7 +10,8 @@ const initialState = {
   activeTab: `Overview`,
   activeCard: ` `,
   myFilms: [],
-  promoFilm: {}
+  promoFilm: {},
+  formError: false
 };
 
 const appData = (state = initialState, action) => {
@@ -67,6 +68,12 @@ const appData = (state = initialState, action) => {
         ...state,
         promoFilm: action.payload
       };
+
+    case ActionType.SET_FORM_ERROR:
+      return {
+        ...state,
+        formError: action.payload
+      }
   }
 
   return state;

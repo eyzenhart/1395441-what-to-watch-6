@@ -10,3 +10,4 @@ export const getActiveTab = (state) => state[NameSpace.DATA].activeTab;
 export const getActiveCard = (state) => state[NameSpace.DATA].activeCard;
 export const getFavouriteFilms = (state) => state[NameSpace.DATA].myFilms;
 export const getPromoFilm = (state) => state[NameSpace.DATA].promoFilm;
+export const getFormError = (state) => state[NameSpace.DATA].formError;

@@ -24,7 +24,7 @@ SimilarFilms.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onCardChoice(id) {
-    dispatch(getCardId(id))
+    dispatch(getCardId(id));
   }
 });
 

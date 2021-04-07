@@ -9,8 +9,23 @@ export const ActionType = {
   ADD_FAVORITE_FILM: `app/get-film`,
   ADD_COMMENT: `app/add-comment`,
   LOAD_PROMO_FILM: `app/load-promo-film`,
-  GET_USER_DATA: `user/get-user-data`
+  GET_USER_DATA: `user/get-user-data`,
+  SET_FORM_ERROR: `app/form-error`
 };
+
+// export const FilmsAdapter = (data) => {
+//   data.map((item) => {
+//     return {
+//       posterImage: item[`poster_image`],
+//       previewImage: item[`preview_image`],
+//       backgroundImage: item[`background_image`],
+//       backgroundColor: item[`background_color`],
+//       videoLink: item[`video_link`],
+//       previewVideoLink: item[`preview_video_link`],
+//       runTime: item[`run_time`]
+//     }
+//   });
+//  };
 
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
@@ -48,8 +63,8 @@ export const getCardId = (id) => ({
 });
 
 export const addFilm = (film) => ({
-    type: ActionType.ADD_FAVORITE_FILM,
-    payload: film
+  type: ActionType.ADD_FAVORITE_FILM,
+  payload: film
 });
 
 export const addComment = (comment) => ({
@@ -66,3 +81,8 @@ export const getUserData = (userData) => ({
   type: ActionType.GET_USER_DATA,
   payload: userData.data
 });
+
+export const setFormError = (formError) => ({
+  type: ActionType.SET_FORM_ERROR,
+  payload: formError
+})

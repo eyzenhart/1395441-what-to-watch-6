@@ -32,7 +32,7 @@ const Film = ({promoFilm, onFilmAdd, authorizationStatus}) => {
               <span className="movie-card__year">{promoFilm.released}</span>
             </p>
             <div className="movie-card__buttons">
-              <Link to={"/player/" + promoFilm.id} className="btn btn--play movie-card__button" type="button">
+              <Link to={`/player/` + promoFilm.id} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -77,6 +77,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-// export default Film;
 export {Film};
 export default connect(mapStateToProps, mapDispatchToProps)(Film);

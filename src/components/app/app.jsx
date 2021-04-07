@@ -7,7 +7,7 @@ import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../not-found/not-found';
 import MoviePage from '../movie-page/movie-page';
-import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../../hocs/private-route/private-route';
 import browserHistory from '../../store/browser-history';
 
 const App = (props) => {

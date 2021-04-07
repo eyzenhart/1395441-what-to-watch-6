@@ -8,7 +8,7 @@ import movieInfoProps from '../../props/movie-info.props';
 const AddReview = ({films}) => {
 
   const {id} = useParams();
-  const film = films.find((film) => film.id == id);
+  const film = films.find((movies) => movies.id == id);
   const newStyle = {backgroundColor: film.background_color};
 
   return (
@@ -48,7 +48,7 @@ const AddReview = ({films}) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={film.poster_image} alt={film.name + " poster"} width="218" height="327" />
+          <img src={film.poster_image} alt={film.name + ` poster`} width="218" height="327" />
         </div>
       </div>
 

@@ -13,7 +13,8 @@ const Player = ({films}) => {
 
   const videoRef = useRef();
 
-  const film = films.find((film) => film.id == id);
+  const film = films.find((movie) => movie.id == id);
+
 
   const handleVideoPlay = () => {
     videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
@@ -26,19 +27,19 @@ const Player = ({films}) => {
   const handleTimeUpdate = () => {
     const video = videoRef.current;
     const {currentTime} = video;
-    setCurrentTime(currentTime)
+    setCurrentTime(currentTime);
   };
 
   const handleDurationChange = () => {
     const video = videoRef.current;
-    setDuration(video.duration)
+    setDuration(video.duration);
   };
 
   const getTime = (duration, time) => {
     const fullTime = duration - time;
     const hours = Math.floor(fullTime / 60 / 60);
     return hours + `:` + (Math.floor(fullTime / 60) - (hours * 60)) + `:` + Math.floor(fullTime % 60);
-  }
+  };
 
   return (
     <div className="player">
@@ -50,7 +51,7 @@ const Player = ({films}) => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={time} max={duration}></progress>
-            <div className="player__toggler" style={{left: (time * 100 / duration) + '%'}}>Toggler</div>
+            <div className="player__toggler" style={{left: (time * 100 / duration) + `%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{getTime(duration, time)}</div>
         </div>

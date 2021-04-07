@@ -9,7 +9,7 @@ const Card = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const [timeouts, setTimeouts] = useState([]);
 
-  const handleMouseOver = (evt) => {
+  const handleMouseOver = () => {
     const timeout = setTimeout(() => {
       setIsHovered(true);
     }, 1000);
@@ -22,7 +22,7 @@ const Card = (props) => {
   };
 
 
-  const {onMouseOver, ...film} = props;
+  const {...film} = props;
 
   return (
     <article onMouseOver = {handleMouseOver} onMouseLeave = {handleMouseLeave} className="small-movie-card catalog__movies-card">

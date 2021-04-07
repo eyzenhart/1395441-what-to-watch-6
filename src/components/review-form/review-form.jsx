@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {review} from '../../store/api-actions';
 import propTypes from 'prop-types';
+import { getFormError } from '../../store/app-data/selectors';
 
-const ReviewForm = ({onSubmit, film}) => {
+const ReviewForm = ({onSubmit, film, formError}) => {
+
+  console.log(formError)
 
   const [rating, setRating] = useState(null);
   const [text, setText] = useState(``);
 
   const handleChange = (evt) => {
-    evt.preventDefault();
     const {target} = evt;
     if (target.name === `rating`) {
       setRating(target.value);
@@ -24,8 +26,8 @@ const ReviewForm = ({onSubmit, film}) => {
     onSubmit(text, rating, film);
   };
 
-  return (
-    <form onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
+  return (<React.Fragment>
+    <form disabled={(text.length < 50 || text.length > 400) && rating} onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
           <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -65,9 +67,11 @@ const ReviewForm = ({onSubmit, film}) => {
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
-
       </div>
     </form>
+
+    {(formError && <p>Что-то пошло не так, попробуйте перезагрузить страницу или проверить ваше подключение к интернету</p>)}
+  </React.Fragment>
   );
 };
 
@@ -75,6 +79,10 @@ ReviewForm.propTypes = {
   onSubmit: propTypes.func,
   film: propTypes.shape({})
 };
+
+const mapStateToProps = (state) => ({
+  formError: getFormError(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(text, rating, film) {
@@ -84,4 +92,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {ReviewForm};
-export default connect(null, mapDispatchToProps)(ReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

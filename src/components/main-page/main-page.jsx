@@ -13,18 +13,6 @@ const MainPage = ({films}) => {
 
   const [listLength, setListLength] = useState(8);
 
-  // const endOfFilms = films.length - listLength;
-
-
-  // const getButton = (films, listLength) => {
-  //   if ((films.length - listLength) > 8) {
-  //     return <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/>
-  //   } else {
-  //     setListLength(listLength + (films.length - listLength))
-  //   }
-  // };
-
-
   return (<React.Fragment>
 
     <Film/>
@@ -37,9 +25,7 @@ const MainPage = ({films}) => {
 
         <FilmList films = {films.slice(0, listLength)}/>
 
-        {(films.length - listLength) > 8 ? <ShowMoreButton onClick = {() => setListLength(listLength + 8)}/> : setListLength(listLength + (films.length - listLength))}
-        {/* setListLength(listLength + (films.length - listLength)) */}
-        {/* {getButton(films, listLength)} */}
+        {(((films.length - listLength) >= 0) && (<ShowMoreButton onClick = {() => setListLength(listLength + 8)}/>))}
 
       </section>
 
@@ -58,4 +44,4 @@ const mapStateToProps = (state) => ({
   films: getCurrentFilms(state)
 });
 
-  export default connect(mapStateToProps, null)(MainPage);
+export default connect(mapStateToProps, null)(MainPage);

@@ -14,7 +14,7 @@ const Tabs = ({film}) => {
   };
 
   const getTabInfo = () => {
-    switch(activeTab) {
+    switch (activeTab) {
       case `Overview`:
         return <MoviePageOverview film={film}/>;
       case `Details`:
