@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import propTypes, {arrayOf} from 'prop-types';
+import propTypes from 'prop-types';
 import {getActiveGenre} from '../../store/app-data/selectors';
 
 
@@ -20,7 +20,7 @@ GenreButton.propTypes = {
   genre: propTypes.string,
   activeGenre: propTypes.string,
   onClick: propTypes.func
-}
+};
 
 const mapStateToProps = (state) => ({
   activeGenre: getActiveGenre(state)

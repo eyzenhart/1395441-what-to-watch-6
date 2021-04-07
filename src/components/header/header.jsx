@@ -2,34 +2,42 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AUTH_STATUS} from '../../store/api-actions';
+import {getAuthStatus} from '../../store/user/selectors';
+import propTypes from 'prop-types';
+import {getUser} from '../../store/user/selectors';
 
 
-const PageHeader = (props) => {
-
-  const {authorizationStatus} = props;
-  console.log(authorizationStatus)
+const PageHeader = ({authorizationStatus, userData}) => {
 
   return (
-    <header className="page-header movie-card__head">
+    <header className="page-header user-page__head">
       <div className="logo">
-          <Link to='/' className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
+        <Link to='/' className="logo__link">
+          <span className="logo__letter logo__letter--1">W</span>
+          <span className="logo__letter logo__letter--2">T</span>
+          <span className="logo__letter logo__letter--3">W</span>
         </Link>
+      </div>
+
+      <Link to={authorizationStatus === AUTH_STATUS.AUTH ? `/mylist` : `/login`} className="user-block">
+        <div className="user-block__avatar">
+          <img src={(authorizationStatus === AUTH_STATUS.AUTH) ? userData.avatar_url : `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
+        </div>
+      </Link>
     </header>
-  )
+  );
+};
+
+PageHeader.propTypes = {
+  authorizationStatus: propTypes.string,
+  userData: propTypes.shape({
+    avatar_url: propTypes.string
+  })
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: getAuthStatus(state),
+  userData: getUser(state)
 });
 
 export {PageHeader};

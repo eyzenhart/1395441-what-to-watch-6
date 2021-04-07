@@ -10,8 +10,6 @@ const GenreList = (props) => {
 
   const {onUserChoice, genreList} = props;
 
-  genreList.unshift(`All genres`);
-
   return (
     <ul className="catalog__genres-list">
 

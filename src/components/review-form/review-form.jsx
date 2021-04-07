@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+import {review} from '../../store/api-actions';
+import propTypes from 'prop-types';
+import { getFormError } from '../../store/app-data/selectors';
 
-const ReviewForm = () => {
+const ReviewForm = ({onSubmit, film, formError}) => {
+
+  console.log(formError)
 
   const [rating, setRating] = useState(null);
   const [text, setText] = useState(``);
 
   const handleChange = (evt) => {
-    evt.preventDefault();
     const {target} = evt;
     if (target.name === `rating`) {
       setRating(target.value);
@@ -15,9 +20,14 @@ const ReviewForm = () => {
     }
   };
 
+  const handleFormSubmit = (evt) => {
+    evt.preventDefault();
 
-  return (
-    <form onChange={handleChange} action="#" className="add-review__form">
+    onSubmit(text, rating, film);
+  };
+
+  return (<React.Fragment>
+    <form  onSubmit={handleFormSubmit} onChange={handleChange} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
           <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -53,14 +63,33 @@ const ReviewForm = () => {
       </div>
 
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" min="50" max="400"></textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button disabled={(text.length < 50 || text.length > 400) || !rating} className="add-review__btn" type="submit">Post</button>
         </div>
-
       </div>
     </form>
+
+    {(formError && <p>Что-то пошло не так, попробуйте перезагрузить страницу или проверить ваше подключение к интернету</p>)}
+  </React.Fragment>
   );
 };
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  onSubmit: propTypes.func,
+  film: propTypes.object
+};
+
+const mapStateToProps = (state) => ({
+  formError: getFormError(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(text, rating, film) {
+    dispatch(review(text, rating, film));
+  }
+});
+
+
+export {ReviewForm};
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

@@ -9,8 +9,8 @@ const PreviewPlayer = ({src, image}) => {
 };
 
 PreviewPlayer.propTypes = {
-  defaultIsPlaying: propTypes.bool,
-  src: propTypes.string
+  src: propTypes.string,
+  image: propTypes.string
 };
 
 export default PreviewPlayer;

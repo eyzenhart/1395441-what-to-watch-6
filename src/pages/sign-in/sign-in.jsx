@@ -1,12 +1,11 @@
 import React, {useRef} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {login} from '../../store/api-actions'
+import {login} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
-import { PageHeader } from '../../components/header/header';
+import {PageHeader} from '../../components/header/header';
+import propTypes from 'prop-types';
 
-
-const SignIn = ({onSubmit, onLogIn}) => {
+const SignIn = ({onSubmit}) => {
 
 
   const loginRef = useRef();
@@ -23,10 +22,12 @@ const SignIn = ({onSubmit, onLogIn}) => {
 
   return (
     <div className="user-page">
+
       <PageHeader/>
 
+
       <div className="sign-in user-page__content">
-        <form onSubmit={handleSubmit} action="#" className="sign-in__form">
+        <form method = "POST" onSubmit={handleSubmit} action="#" className="sign-in__form">
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref = {loginRef}/>
@@ -38,7 +39,7 @@ const SignIn = ({onSubmit, onLogIn}) => {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button onClick = {() => {onLogIn()}}  className="sign-in__btn" type="submit">Sign in</button>
+            <button className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>
@@ -46,6 +47,10 @@ const SignIn = ({onSubmit, onLogIn}) => {
       <Footer/>
     </div>
   );
+};
+
+SignIn.propTypes = {
+  onSubmit: propTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => ({
