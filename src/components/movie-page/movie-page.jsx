@@ -112,7 +112,8 @@ const MoviePage = ({films, authorizationStatus, onFilmAdd, isFilmListLoaded, onL
 MoviePage.propTypes = {
   films: movieInfoProps,
   authorizationStatus: propTypes.string,
-  onFilmAdd: propTypes.func
+  onFilmAdd: propTypes.func,
+  isFilmListLoaded: propTypes.bool
 };
 
 const mapStateToProps = (state) => ({

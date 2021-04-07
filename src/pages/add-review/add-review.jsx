@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 import {getFilms} from '../../store/app-data/selectors';
 import {connect} from 'react-redux';
 import movieInfoProps from '../../props/movie-info.props';
-import { getUserData } from '../../store/actions';
+import {getUserData} from '../../store/actions';
 import propTypes from 'prop-types';
 
 const AddReview = ({films, userData}) => {

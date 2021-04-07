@@ -16,6 +16,7 @@ const MoviePageOverview = ({film}) => {
       case film.rating === 10:
         return `Awesome`;
     }
+    return `Normal`
   };
 
   return (<React.Fragment>
@@ -23,7 +24,7 @@ const MoviePageOverview = ({film}) => {
       <div className="movie-rating__score">{film.rating}</div>
       <p className="movie-rating__meta">
         <span className="movie-rating__level">{getRating(film)}</span>
-        <span className="movie-rating__count">{film.scores_count}</span>
+        <span className="movie-rating__count">{film.scoresCount}</span>
       </p>
     </div>
 
